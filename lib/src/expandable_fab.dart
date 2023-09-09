@@ -404,20 +404,11 @@ class _ExpandingActionButton extends StatelessWidget {
     return AnimatedBuilder(
       animation: progress,
       builder: (context, child) {
-        final pos = Offset.fromDirection(
-          directionInDegrees * (math.pi / 180.0),
-          progress.value * maxDistance,
-        );
-        return Positioned(
-          right: fabPos == ExpandableFabPos.right ? offset.dx + pos.dx : null,
-          left: fabPos == ExpandableFabPos.right ? null : -offset.dx + pos.dx,
-          bottom: offset.dy + pos.dy,
-          child: Transform.rotate(
-            angle: (1.0 - progress.value) * math.pi / 2,
-            child: IgnorePointer(
-              ignoring: progress.value != 1,
-              child: child,
-            ),
+        return Transform.rotate(
+          angle: (1.0 - progress.value) * math.pi / 2,
+          child: IgnorePointer(
+            ignoring: progress.value != 1,
+            child: child,
           ),
         );
       },
